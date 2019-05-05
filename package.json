@@ -1,6 +1,6 @@
 {
   "name": "@citation-js/create-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Template for Citation.js plugins",
   "main": "index.js",
   "bin": "index.js",
