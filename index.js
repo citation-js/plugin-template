@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const init = require('init-package-json')
 const fs = require('fs')
 const readline = require('readline')
