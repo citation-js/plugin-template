@@ -51,7 +51,10 @@ init(cwd, initFile, (er, data) => {
       prepublishOnly: 'npm run babel',
       preversion: 'npm run lint && npm run test'
     },
-    dependencies: {},
+    dependencies: {
+      '@citation-js/date': '^0.4.4',
+      '@citation-js/name': '^0.4.2',
+    },
     devDependencies: {
       '@babel/cli': '^7.2.3',
       '@babel/core': '^7.2.2',
@@ -59,9 +62,13 @@ init(cwd, initFile, (er, data) => {
       '@babel/register': '^7.0.0',
       'babel-eslint': '^10.0.1',
       'babel-plugin-istanbul': '^5.1.0',
-      mocha: '^5.2.0',
-      nyc: '^13.1.0',
+      '@citation-js/core': '^0.4.2',
+      mocha: '^6.1.4',
+      nyc: '^14.1.0',
       standard: '^12.0.1'
+    },
+    peerDependencies: {
+      '@citation-js/core': '^0.4.2'
     }
   })
 
