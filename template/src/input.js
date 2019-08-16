@@ -1,4 +1,4 @@
-import { utils } from '@citation-js/core'
+import { util } from '@citation-js/core'
 import config from './config'
 
 export const ref = '@$SCOPE'
@@ -13,7 +13,7 @@ export const formats = {
         headers.Authorization = `token ${config.apiToken}`
       }
 
-      return utils.fetchFileAsync(url, { headers })
+      return util.fetchFileAsync(url, { headers })
     },
     parseType: {
       dataType: 'String',
@@ -35,5 +35,3 @@ export const formats = {
     }
   }
 }
-
-export { ref, formats }
