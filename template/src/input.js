@@ -1,8 +1,7 @@
 import { util } from '@citation-js/core'
 import config from './config'
 
-export const ref = '@$SCOPE'
-export const formats = {
+export default {
   // fetch from API
   '@$SCOPE/id': {
     parseAsync (id) {
