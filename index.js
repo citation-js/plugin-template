@@ -27,55 +27,51 @@ init(cwd, initFile, (er, data) => {
 
   Object.assign(package, {
     engines: {
-      node: '>=8'
+      node: '>=14'
     },
     files: [
       '/lib'
     ],
-    nyc: {
-      include: [
-        'src/**/*.js'
-      ],
-      sourceMap: false,
-      instrument: false
-    },
     standard: {
-      parser: 'babel-eslint'
+      parser: '@babel/eslint-parser'
     },
     scripts: {
-      test: 'mocha -r @babel/register -R spec test/suite.js',
+      test: 'mocha -r @babel/register test/suite.js',
       babel: 'babel src -d lib --copy-files',
       lint: 'standard "src/**/*.js" "test/**/*.js"',
-      coverage: 'nyc npm test',
+      changelog: 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md',
+      coverage: 'NODE_ENV=coverage nyc npm test',
       report: 'nyc report --reporter=lcov > coverage.lcov',
-      prepublishOnly: 'npm run babel',
-      preversion: 'npm run lint && npm run test'
+      preversion: 'npm run lint && npm run test',
+      version: 'npm run changelog',
+      postversion: 'npm run babel'
     },
     dependencies: {
-      '@citation-js/date': '^0.4.4',
+      '@citation-js/date': '^0.5.0',
       '@citation-js/name': '^0.4.2',
     },
     devDependencies: {
-      '@babel/cli': '^7.2.3',
-      '@babel/core': '^7.2.2',
-      '@babel/preset-env': '^7.2.3',
-      '@babel/register': '^7.0.0',
-      'babel-eslint': '^10.0.1',
+      '@babel/cli': '^7.12.10',
+      '@babel/core': '^7.12.10',
+      '@babel/eslint-parser': '^7.14.3',
+      '@babel/preset-env': '^7.12.10',
+      '@babel/register': '^7.12.10',
       'babel-plugin-istanbul': '^5.1.0',
-      '@citation-js/core': '^0.4.2',
-      mocha: '^6.1.4',
-      nyc: '^14.1.0',
-      standard: '^12.0.1'
+      '@citation-js/core': '^0.5.1',
+      'conventional-changelog-cli': '^2.1.0',
+      mocha: '^8.4.0',
+      nyc: '^15.1.0',
+      standard: '^16.0.3'
     },
     peerDependencies: {
-      '@citation-js/core': '^0.4.2'
+      '@citation-js/core': '^0.5.1'
     }
   })
 
   fs.writeFileSync('package.json', JSON.stringify(package, null, 2))
-  fs.writeFileSync('.gitignore', `lib/
-node_modules/
-package-lock.json`)
+  fs.writeFileSync('.gitignore', `/lib
+/node_modules
+/package-lock.json`)
 
   rl = readline.createInterface({
     input: process.stdin,
