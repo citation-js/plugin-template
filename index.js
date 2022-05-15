@@ -71,7 +71,8 @@ init(cwd, initFile, (er, data) => {
   fs.writeFileSync('package.json', JSON.stringify(package, null, 2))
   fs.writeFileSync('.gitignore', `/lib
 /node_modules
-/package-lock.json`)
+/package-lock.json
+/.nyc_output`)
 
   rl = readline.createInterface({
     input: process.stdin,
